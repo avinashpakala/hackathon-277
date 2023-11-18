@@ -4,7 +4,7 @@ import { LineChart } from 'react-native-chart-kit';
 
 const screenWidth = Dimensions.get('window').width;
 
-const MultiLineChart = ({start, end, data}) => {
+const MultiLineChart = ({start, end}) => {
   // Sample data
   const data = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June'],
