@@ -4,18 +4,8 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import CheckBox from 'react-native-check-box';
 
-const CheckboxGroup = () => {
-    const [selectedOptions, setSelectedOptions] = useState([]);
+const CheckboxGroup = ({options, selectedOptions, handleCheckboxChange}) => {
 
-    const options = ['GDP (USD)', 'FDI Inflows (USD)', 'FDI Outflows (USD)', 'Import/Export Flow'];
-
-    const handleCheckboxChange = (option) => {
-        setSelectedOptions(prevSelectedOptions =>
-            prevSelectedOptions.includes(option)
-                ? prevSelectedOptions.filter(currentOption => currentOption !== option)
-                : [...prevSelectedOptions, option]
-        );
-    };
 
     return (
         <View>
