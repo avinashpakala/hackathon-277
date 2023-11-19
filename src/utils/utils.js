@@ -26,6 +26,26 @@ const apis = {
     }
 }
 
+const indicators = {
+    "GDP Growth Rage": apis.macro.gdp_growth_rage,
+    "GDP Current USD": apis.macro.gdp_current_usd,
+    "Current Account Balance (% of GDP)": apis.macro.current_account_balance,
+    "Foreign direct investment, net (BoP, current US$)": apis.macro.fdi_net,
+    "Foreign direct investment, net inflows (% of GDP)": apis.macro.fdi_inflows,
+    "FDI-NetOutflows(%ofGDP)": apis.macro.fdi_outflows,
+    "Agricultural Contribution (% GDP)": apis.agriculture.gdp,
+    "Manufacturing(%GDP)": apis.agriculture.manufacturing_gdp,
+    "Agriculture, forestry, and fishing, value added (annual % growth)": apis.agriculture.agriculture_forestry,
+    "Fertilizer consumption (kilograms per hectare of arable land)": apis.agriculture.fertilizer_cons,
+    "Fertilizer consumption (% of fertilizer production)": apis.agriculture.fertilizer_prod,
+    "Total reserves in months of imports": apis.debt.importReserves,
+    "Total reserves (includes gold, current US$)": apis.debt.goldReserves,
+    "Total reserves (% of total external debt)": apis.debt.totalReserves,
+    "Debt service (PPG and IMF only, % of exports of goods, services and primary income)": apis.debt.debtServices,
+    "Total debt service (% of GNI)": apis.debt.totalDebt,
+    "GNI (current US$)": apis.debt.currentGni
+};
+
 function replacePlaceholders(template, values) {
     return template.replace(/\{(\w+)\}/g, (match, key) => {
       return values.hasOwnProperty(key) ? values[key] : match;
@@ -33,17 +53,16 @@ function replacePlaceholders(template, values) {
   }
   
 
-const fetchApiResponse = async (serviceName, start, end, country, persona, selectedOptions, setResult) => {
+const fetchApiResponse = async (serviceName, start, end, country, selectedOptions) => {
 try {
-    let results = [];
-    let api_templates = apis[serviceName]
-    selectedOptions.forEach(async option => {
-        let apiUrl = replacePlaceholders(api_templates[option], {startDate: start, endDate: end, country})
+    let results = {};
+    for (const option of selectedOptions) {
+        let apiUrl = replacePlaceholders(indicators[option], {startDate: start, endDate: end, country})
         const response = await fetch(apiUrl);
         const data = await response.json();
-        results.push(data);
-    });
-    setResult(results);
+        results[option] = data;
+      
+    }
     return results
 } catch (error) {
     console.error('There was an error fetching the data:', error);

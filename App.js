@@ -15,9 +15,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AnnotationList from './src/AnnotationList';
 import HomeScreen from './src/HomeScreen';
 const Tab = createBottomTabNavigator();
-
-import CountryPicker from './CountryPicker';
-
+import AgriScreen from './src/AgriScreen';
+import DebtScreen from './src/DebtScreen';
 
 
 export default function App() {
@@ -25,8 +24,8 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Macro" component={HomeScreen} />
-        <Tab.Screen name="Agriculture" component={HomeScreen} />
-        <Tab.Screen name="Debit" component={HomeScreen} />
+        <Tab.Screen name="Agriculture" component={AgriScreen} />
+        <Tab.Screen name="Debit" component={DebtScreen} />
         <Tab.Screen name="BudgetGPT" component={WebView} />
         {/* The second WebView tab seems to be a duplicate. Consider renaming or removing it. */}
         {/* Add more tabs as needed */}

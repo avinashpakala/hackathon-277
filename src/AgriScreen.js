@@ -7,16 +7,16 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import MultiLineChart from "../src/MultiLineChart";
+import MultiLineChart from "./MultiLineChart";
 import CheckboxGroup from "../CheckboxGroup";
-import {createChartObject, generateYearArray } from "../src/utils/common";
+import {createChartObject, generateYearArray } from "./utils/common";
 import PersonaPicker from "../PersonaPicker";
 import YearPicker from "../YearPicker";
-import AnnotationList from "../src/AnnotationList";
+import AnnotationList from "./AnnotationList";
 import CountryPicker from "../CountryPicker";
 import apis from './utils/utils'; // Adjust the path as necessary
 
-export default function HomeScreen({ navigation }) {
+export default function AgriScreen({ navigation }) {
   const [country, setCountry] = useState(""); // Country state
   const [persona, setPersona] = useState(""); // Country state
 
@@ -29,35 +29,18 @@ export default function HomeScreen({ navigation }) {
   const [chartData, setChartData] = useState([]); // Chart data state
   const [selectedOptions, setSelectedOptions] = useState([]);
   const macroOptions = [
-    "GDP Growth Rage",
-    "GDP Current USD",
-    "Current Account Balance (% of GDP)",
-    "Foreign direct investment, net (BoP, current US$)",
-    "Foreign direct investment, net inflows (% of GDP)",
-    "FDI-NetOutflows(%ofGDP)"
+    "Agricultural Contribution (% GDP)",
+    "Manufacturing(%GDP)",
+    "Agriculture, forestry, and fishing, value added (annual % growth)",
+    "Fertilizer consumption (kilograms per hectare of arable land)",
+    "Fertilizer consumption (% of fertilizer production)"
 ];
-
   // Generate years from 2016 to 2020
   const years = generateYearArray(2016, 2020);
 
  
 
-  const initChartData = {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [
-      {
-        data: [20, 45, 28, 80, 99, 43],
-        color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-        strokeWidth: 2, // optional
-      },
-      {
-        data: [30, 90, 67, 54, 10, 77],
-        color: (opacity = 1) => `rgba(0, 255, 0, ${opacity})`, // optional
-        strokeWidth: 2, // optional
-      },
-    ],
-    legend: ["Rainy Days", "Sunny Days"], // optional
-  };
+
 
   const handleShowPress = async () => {
     try{
