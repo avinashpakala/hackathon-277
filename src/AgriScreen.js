@@ -38,9 +38,6 @@ export default function AgriScreen({ navigation }) {
   // Generate years from 2016 to 2020
   const years = generateYearArray(2016, 2020);
 
- 
-
-
 
   const handleShowPress = async () => {
     try{
@@ -48,7 +45,6 @@ export default function AgriScreen({ navigation }) {
       console.log("persona", persona);
       console.log("start", start);
       console.log("end", end);
-  
       console.log("selectedOptions", selectedOptions);
       const result = await apis.fetchApiResponse("macro", start, end, country, selectedOptions);
       console.log("result", result);

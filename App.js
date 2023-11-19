@@ -27,8 +27,6 @@ export default function App() {
         <Tab.Screen name="Agriculture" component={AgriScreen} />
         <Tab.Screen name="Debit" component={DebtScreen} />
         <Tab.Screen name="BudgetGPT" component={WebView} />
-        {/* The second WebView tab seems to be a duplicate. Consider renaming or removing it. */}
-        {/* Add more tabs as needed */}
       </Tab.Navigator>
     </NavigationContainer>
   );
