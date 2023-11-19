@@ -6,7 +6,7 @@ const Webview = () => {
   return (
     <SafeAreaView style={styles.flexContainer}>
       <WebView 
-        source={{ uri: 'https://hackathon-280.vercel.app/' }}
+        source={{ uri: 'https://277llmnew.streamlit.app' }}
         style={styles.webview}
       />
     </SafeAreaView>

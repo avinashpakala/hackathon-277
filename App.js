@@ -7,6 +7,8 @@ import WebView from './src/WebViewPage'; // Ensure this path is correct
 import GDPChart from './src/MultiLineChart'; // Ensure this path is correct
 import MultiLineChart from './src/MultiLineChart';
 import CheckboxGroup from './CheckboxGroup';
+import { generateYearArray } from './src/utils/common';
+
 const Tab = createBottomTabNavigator();
 
 function HomeScreen({ navigation }) {
@@ -14,6 +16,10 @@ function HomeScreen({ navigation }) {
   const [showChart, setShowChart] = useState(false); // To toggle chart view
   const [showEditor, setShowEditor] = useState(false); // To toggle annotation editor
   const [data, setData] = useState([]); // Chart data state
+  const [selectedYear, setSelectedYear] = useState('2020');
+
+  // Generate years from 2016 to 2020
+  const years = generateYearArray(2016, 2020);
 
   // Mock API response
   const apiResponse = [
@@ -50,6 +56,7 @@ function HomeScreen({ navigation }) {
         <Picker.Item label="US" value="US" />
         <Picker.Item label="China" value="China" />
       </Picker> */}
+      
       <MultiLineChart country={selectedCountry} />
 
     </View>
@@ -61,7 +68,9 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Macro" component={HomeScreen} />
-        <Tab.Screen name="WebViewPage" component={WebView} />
+        <Tab.Screen name="Agriculture" component={HomeScreen} />
+        <Tab.Screen name="Debit" component={HomeScreen} />
+        <Tab.Screen name="BudgetGPT" component={WebView} />
         {/* The second WebView tab seems to be a duplicate. Consider renaming or removing it. */}
         {/* Add more tabs as needed */}
       </Tab.Navigator>
@@ -76,4 +85,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  picker: {
+    width: 200,
+    height: 44,
+  }
 });
