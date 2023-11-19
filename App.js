@@ -8,16 +8,22 @@ import GDPChart from './src/MultiLineChart'; // Ensure this path is correct
 import MultiLineChart from './src/MultiLineChart';
 import CheckboxGroup from './CheckboxGroup';
 import { generateYearArray } from './src/utils/common';
+import PersonaPicker from './PersonaPicker';
+import YearPicker from './YearPicker';
 
 const Tab = createBottomTabNavigator();
 import CountryPicker from './CountryPicker';
 
 function HomeScreen({ navigation }) {
   const [country, setCountry] = useState(''); // Country state
+  const [persona, setPersona] = useState(''); // Country state
+
   const [showChart, setShowChart] = useState(false); // To toggle chart view
   const [showEditor, setShowEditor] = useState(false); // To toggle annotation editor
   const [data, setData] = useState([]); // Chart data state
   const [selectedYear, setSelectedYear] = useState('2020');
+  const [start, setStart] = useState('2012');
+  const [end, setEnd] = useState('2020');
 
   // Generate years from 2016 to 2020
   const years = generateYearArray(2016, 2020);
@@ -29,6 +35,10 @@ function HomeScreen({ navigation }) {
   ];
 
   const handleShowPress = () => {
+    console.log('country', country);
+    console.log('persona', persona);
+    console.log('start', start);
+    console.log('end', end);
     setData(apiResponse); // Set data for chart
     setShowChart(true); // Show chart screen
   };
@@ -36,6 +46,12 @@ function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <CountryPicker onSelectCountry={setCountry} />
       {country? (<Text style={{ color: 'black', textAlign: 'center' }}>{country}</Text>): (<Text/>)}
+      <PersonaPicker onSelectPersona={setPersona} />
+      {persona? (<Text style={{ color: 'black', textAlign: 'center' }}>{persona}</Text>): (<Text/>)}
+      <YearPicker onSelectYear={setStart} />
+      {persona? (<Text style={{ color: 'black', textAlign: 'center' }}>{start}</Text>): (<Text/>)}
+      <YearPicker onSelectYear={setEnd} />
+      {persona? (<Text style={{ color: 'black', textAlign: 'center' }}>{end}</Text>): (<Text/>)}
       <CheckboxGroup />
       <TouchableOpacity
         onPress={handleShowPress}
