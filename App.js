@@ -10,9 +10,10 @@ import CheckboxGroup from './CheckboxGroup';
 import { generateYearArray } from './src/utils/common';
 
 const Tab = createBottomTabNavigator();
+import CountryPicker from './CountryPicker';
 
 function HomeScreen({ navigation }) {
-  const [selectedCountry, setSelectedCountry] = useState('India');
+  const [country, setCountry] = useState(''); // Country state
   const [showChart, setShowChart] = useState(false); // To toggle chart view
   const [showEditor, setShowEditor] = useState(false); // To toggle annotation editor
   const [data, setData] = useState([]); // Chart data state
@@ -33,6 +34,8 @@ function HomeScreen({ navigation }) {
   };
   return (
     <View style={styles.container}>
+      <CountryPicker onSelectCountry={setCountry} />
+      {country? (<Text style={{ color: 'black', textAlign: 'center' }}>{country}</Text>): (<Text/>)}
       <CheckboxGroup />
       <TouchableOpacity
         onPress={handleShowPress}
@@ -56,8 +59,7 @@ function HomeScreen({ navigation }) {
         <Picker.Item label="US" value="US" />
         <Picker.Item label="China" value="China" />
       </Picker> */}
-      
-      <MultiLineChart country={selectedCountry} />
+      <MultiLineChart country={setCountry} />
 
     </View>
   );
