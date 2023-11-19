@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { View, Button, ActionSheetIOS, Text } from 'react-native';
+import { generateYearArray } from './src/utils/common';
 
 const YearPicker = ({ onSelectYear }) => {
-  const countries = ['ECON Researcher', 'Govt Representative'];
+  const countries = generateYearArray(2000, 2020);
 
   const showActionSheet = () => {
     ActionSheetIOS.showActionSheetWithOptions(
